@@ -1,6 +1,6 @@
 cask "notch-browser" do
-  version "0.7.0"
-  sha256 "8ce234e9a8c54468546439918ae4688a94168b78206b2832c664b7f79da4317d"
+  version "0.7.1"
+  sha256 "e3db216b265a67870b4a322711516d2763a4b3b9e02998a7c9719ea3802842f4"
 
   url "https://github.com/rezapace/notch-browser/releases/download/v#{version}/NotchBrowser.dmg"
   name "NotchBrowser"
