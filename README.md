@@ -41,9 +41,26 @@ Tidak ada hook penghapus cookie/cache/profil. Jika app dari instalasi manual sud
 
 ## Keamanan
 
-Cask memverifikasi SHA-256 dan memakai URL versi tetap. Tidak ada skrip penghapus quarantine atau bypass Gatekeeper. Aplikasi masih **ad-hoc signed, belum notarized**. Jika macOS memblokir pembukaan, gunakan **System Settings → Privacy & Security → Open Anyway** hanya jika Anda mempercayai sumbernya.
+Cask memverifikasi SHA-256 dan memakai URL versi tetap. Tidak ada hook otomatis untuk menghapus quarantine atau bypass Gatekeeper. Aplikasi masih **ad-hoc signed, belum notarized**. Jika macOS memblokir pembukaan, gunakan **System Settings → Privacy & Security → Open Anyway** hanya jika Anda mempercayai sumbernya.
 
 Ini tap proyek sendiri, bukan cask resmi `Homebrew/homebrew-cask`. Notice/lisensi aplikasi tetap mengikuti [repository aplikasi](https://github.com/rezapace/notch-browser/blob/master/licenses/THIRD_PARTY_NOTICES.md).
+
+## Peringatan Gatekeeper
+
+Jika setelah instalasi muncul:
+
+> Apple could not verify “NotchBrowser.app” is free of malware that may harm your Mac or compromise your privacy.
+
+Utamakan **System Settings → Privacy & Security → Open Anyway**. Alternatif Terminal, **hanya jika mempercayai sumber release**:
+
+```sh
+xattr -dr com.apple.quarantine /Applications/NotchBrowser.app
+open /Applications/NotchBrowser.app
+```
+
+Opsi lebih luas `xattr -cr /Applications/NotchBrowser.app` juga menghapus quarantine, tetapi menghapus **semua extended attributes** dalam app bundle. Pilih opsi terbatas di atas bila cukup; tidak perlu menjalankan keduanya.
+
+Ini melewati pemeriksaan Gatekeeper berbasis quarantine untuk app tersebut, bukan pemindaian malware atau notarization. Homebrew **tidak menjalankannya otomatis**. Sesuaikan path untuk `--appdir` lain. Update app dapat mengembalikan quarantine. [Panduan lengkap](https://github.com/rezapace/notch-browser/blob/master/docs/homebrew.md#peringatan-gatekeeper).
 
 ## Pemeliharaan
 
